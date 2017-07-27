@@ -20,7 +20,7 @@ public class Configurator {
     private Configurator() {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(),false);
     }
-    private static class Holder{
+    private static final class Holder{
         private static final Configurator INSTANCE = new Configurator();
     }
     public static Configurator getInstance(){
@@ -41,7 +41,7 @@ public class Configurator {
     }
 
     private void checkConfiguration(){
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READY);
+        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READY.name());
         if (!isReady){
             throw new RuntimeException("Configuration is not ready,call configure");
         }
@@ -56,7 +56,7 @@ public class Configurator {
     private void initIcons(){
         if (ICONS.size() > 0){
             final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
-            for (int i = 0; i < ICONS.size() ; i++) {
+            for (int i = 1; i < ICONS.size() ; i++) {
                 initializer.with(ICONS.get(i));
             }
         }
