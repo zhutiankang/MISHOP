@@ -3,6 +3,7 @@ package com.northlight.latte.net;
 import com.northlight.latte.app.ConfigType;
 import com.northlight.latte.app.Latte;
 
+import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -17,6 +18,12 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RestCreator {
 
+    private static final class ParamsHolder{
+        private static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
+    }
+    public static WeakHashMap<String,Object> getParams(){
+        return ParamsHolder.PARAMS;
+    }
     public static RestService getRestService(){
         return RestServiceHolder.REST_SERVICE;
     }
