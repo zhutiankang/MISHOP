@@ -3,7 +3,6 @@ package com.northlight.festec.example;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Toast;
 
 import com.northlight.latte.delegates.LatteDelegate;
 import com.northlight.latte.net.RestClient;
@@ -30,10 +29,11 @@ public class ExampleDelegate extends LatteDelegate{
     private void testRestClient(){
         RestClient.builder()
                 .url("http://news.baidu.com/")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {

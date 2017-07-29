@@ -1,10 +1,14 @@
 package com.northlight.latte.net;
 
+import android.content.Context;
+
 import com.northlight.latte.net.callback.IError;
 import com.northlight.latte.net.callback.IFailure;
 import com.northlight.latte.net.callback.IRequest;
 import com.northlight.latte.net.callback.ISuccess;
 import com.northlight.latte.net.callback.RequestCallbacks;
+import com.northlight.latte.ui.LatteLoader;
+import com.northlight.latte.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -28,6 +32,8 @@ public class RestClient {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody BODY;
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
 
     RestClient(String url,
                Map<String, Object> params,
@@ -35,7 +41,9 @@ public class RestClient {
                ISuccess success,
                IFailure failure,
                IError error,
-               RequestBody body) {
+               RequestBody body,
+               LoaderStyle loaderStyle,
+               Context context) {
         this.URL = url;
         PARAMS.putAll(params);
         this.REQUEST = request;
@@ -43,6 +51,8 @@ public class RestClient {
         this.FAILURE = failure;
         this.ERROR = error;
         this.BODY = body;
+        this.LOADER_STYLE = loaderStyle;
+        this.CONTEXT = context;
     }
 
     public static RestClientBuilder builder(){
@@ -54,6 +64,9 @@ public class RestClient {
         Call<String> call = null;
         if (REQUEST != null){
             REQUEST.onRequestStart();//loading
+        }
+        if (LOADER_STYLE != null){
+            LatteLoader.showLoading(CONTEXT,LOADER_STYLE);
         }
         switch (method){
             case GET:
@@ -77,7 +90,7 @@ public class RestClient {
     }
 
     private Callback<String> getRequestCallback(){
-        return new RequestCallbacks(REQUEST,SUCCESS,FAILURE,ERROR);
+        return new RequestCallbacks(REQUEST,SUCCESS,FAILURE,ERROR,LOADER_STYLE);
     }
 
     public final void get(){
