@@ -8,6 +8,7 @@ import com.northlight.latte.net.callback.IRequest;
 import com.northlight.latte.net.callback.ISuccess;
 import com.northlight.latte.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
@@ -28,6 +29,7 @@ public class RestClientBuilder {
     private IFailure mFailure = null;
     private IError mError = null;
     private RequestBody mBody = null;
+    private File mFile = null;
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
 
@@ -48,7 +50,14 @@ public class RestClientBuilder {
         PARAMS.put(key,value);
         return this;
     }
-
+    public final RestClientBuilder file(File file){
+        mFile = file;
+        return this;
+    }
+    public final RestClientBuilder params(String file){
+        mFile = new File(file);
+        return this;
+    }
     //原始数据字符串
     public final RestClientBuilder raw(String raw){
         mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"),raw);
@@ -87,6 +96,6 @@ public class RestClientBuilder {
     }
 
     public final RestClient build(){
-        return new RestClient(mUrl,PARAMS,mRequest,mSuccess,mFailure,mError,mBody,mLoaderStyle,mContext);
+        return new RestClient(mUrl,PARAMS,mRequest,mSuccess,mFailure,mError,mBody,mFile,mLoaderStyle,mContext);
     }
 }

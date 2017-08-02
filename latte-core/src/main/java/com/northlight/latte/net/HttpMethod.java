@@ -9,7 +9,7 @@ package com.northlight.latte.net;
 public enum  HttpMethod {
     GET,
     POST,
-    POST_RAW,
+    POST_RAW, //原始数据
     PUT,
     PUT_RAW,
     DELETE,
