@@ -25,7 +25,7 @@ public class LatteLoader {
 
     private static final ArrayList<AppCompatDialog> LOADERS = new ArrayList<>();
 
-    private static final String DEFAULT_LOADER = LoaderStyle.BallClipRotatePulseIndicator.name();
+    private static final LoaderStyle DEFAULT_LOADER = LoaderStyle.BallClipRotatePulseIndicator;
 
     public static void showLoading(Context context,LoaderStyle loaderStyle){
         showLoading(context,loaderStyle.name());
