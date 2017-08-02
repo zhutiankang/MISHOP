@@ -7,7 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.northlight.latte.R;
-import com.northlight.latte.util.DimenUtil;
+import com.northlight.latte.util.dimen.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

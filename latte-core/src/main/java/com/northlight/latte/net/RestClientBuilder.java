@@ -33,6 +33,10 @@ public class RestClientBuilder {
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
 
+    private String mDownLoadDir = null; //目录名
+    private String mExtension = null; //后缀
+    private String mName = null;      //完整文件名，与上面两个取其一
+
     RestClientBuilder(){
     }
 
@@ -54,8 +58,20 @@ public class RestClientBuilder {
         mFile = file;
         return this;
     }
-    public final RestClientBuilder params(String file){
+    public final RestClientBuilder file(String file){
         mFile = new File(file);
+        return this;
+    }
+    public final RestClientBuilder name(String name){
+        mName = name;
+        return this;
+    }
+    public final RestClientBuilder dir(String downLoadDir){
+        mDownLoadDir = downLoadDir;
+        return this;
+    }
+    public final RestClientBuilder extension(String extension){
+        mExtension = extension;
         return this;
     }
     //原始数据字符串
@@ -96,6 +112,18 @@ public class RestClientBuilder {
     }
 
     public final RestClient build(){
-        return new RestClient(mUrl,PARAMS,mRequest,mSuccess,mFailure,mError,mBody,mFile,mLoaderStyle,mContext);
+        return new RestClient(mUrl,
+                PARAMS,
+                mRequest,
+                mDownLoadDir,
+                mExtension,
+                mName,
+                mSuccess,
+                mFailure,
+                mError,
+                mBody,
+                mFile,
+                mLoaderStyle,
+                mContext);
     }
 }
