@@ -11,7 +11,7 @@ import com.northlight.latte.app.Latte;
  * date   : 2017/7/29 16:09
  */
 
-public class DimenUtil {
+public final class DimenUtil {
 
     public static int getScreenWidth(){
         final Resources resources = Latte.getApplicationContext().getResources();

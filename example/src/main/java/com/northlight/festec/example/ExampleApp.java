@@ -5,7 +5,8 @@ import android.app.Application;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.joanzapata.iconify.fonts.IoniconsModule;
 import com.northlight.latte.app.Latte;
-import com.northlight.latte.ec.FontEcModule;
+import com.northlight.latte.ec.icon.FontEcModule;
+import com.northlight.latte.net.interceptors.DebugInterceptor;
 
 /**
  * author : 祝天康
@@ -22,7 +23,9 @@ public class ExampleApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new IoniconsModule())
                 .withIcon(new FontEcModule())
+                .withLoaderDelayed(1000)
                 .withApiHost("http://127.0.0.1/")
+                .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
     }
 }

@@ -2,6 +2,8 @@ package com.northlight.latte.net.callback;
 
 import android.os.Handler;
 
+import com.northlight.latte.app.ConfigType;
+import com.northlight.latte.app.Latte;
 import com.northlight.latte.ui.LatteLoader;
 import com.northlight.latte.ui.LoaderStyle;
 
@@ -65,7 +67,7 @@ public class RequestCallbacks implements Callback<String>{
                 public void run() {
                     LatteLoader.stopLoading();
                 }
-            },5000);
+            }, (Long) Latte.getConfiguration(ConfigType.LOADER_DELAYED));
 
         }
     }

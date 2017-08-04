@@ -82,4 +82,8 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.INTERCEPTOR,INTERCEPTORS);
         return this;
     }
+    public final Configurator withLoaderDelayed(long delayed){
+        LATTE_CONFIGS.put(ConfigType.LOADER_DELAYED,delayed);
+        return this;
+    }
 }

@@ -1,4 +1,4 @@
-package com.northlight.latte.ec;
+package com.northlight.latte.ec.icon;
 
 import com.joanzapata.iconify.Icon;
 
