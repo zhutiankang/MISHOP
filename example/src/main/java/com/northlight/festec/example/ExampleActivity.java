@@ -2,12 +2,13 @@ package com.northlight.festec.example;
 
 import com.northlight.latte.activities.ProxyActivity;
 import com.northlight.latte.delegates.LatteDelegate;
+import com.northlight.latte.ec.launcher.LauncherScrollDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new ExampleDelegate();
+        return new LauncherScrollDelegate();
     }
 
 //    @Override

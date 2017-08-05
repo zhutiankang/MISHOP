@@ -4,8 +4,8 @@ import android.os.Handler;
 
 import com.northlight.latte.app.ConfigType;
 import com.northlight.latte.app.Latte;
-import com.northlight.latte.ui.LatteLoader;
-import com.northlight.latte.ui.LoaderStyle;
+import com.northlight.latte.ui.loader.LatteLoader;
+import com.northlight.latte.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

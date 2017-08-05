@@ -6,7 +6,7 @@ import com.northlight.latte.net.callback.IError;
 import com.northlight.latte.net.callback.IFailure;
 import com.northlight.latte.net.callback.IRequest;
 import com.northlight.latte.net.callback.ISuccess;
-import com.northlight.latte.ui.LoaderStyle;
+import com.northlight.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;

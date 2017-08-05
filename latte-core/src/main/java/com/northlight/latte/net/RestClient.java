@@ -8,8 +8,8 @@ import com.northlight.latte.net.callback.IRequest;
 import com.northlight.latte.net.callback.ISuccess;
 import com.northlight.latte.net.callback.RequestCallbacks;
 import com.northlight.latte.net.download.DownloadHandler;
-import com.northlight.latte.ui.LatteLoader;
-import com.northlight.latte.ui.LoaderStyle;
+import com.northlight.latte.ui.loader.LatteLoader;
+import com.northlight.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

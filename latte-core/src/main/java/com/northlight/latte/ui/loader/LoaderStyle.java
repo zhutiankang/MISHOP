@@ -1,4 +1,4 @@
-package com.northlight.latte.ui;
+package com.northlight.latte.ui.loader;
 
 /**
  * author : 祝天康
