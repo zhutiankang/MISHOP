@@ -1,21 +1,26 @@
 package com.northlight.festec.example;
 
+
+import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+
 import com.northlight.latte.activities.ProxyActivity;
 import com.northlight.latte.delegates.LatteDelegate;
-import com.northlight.latte.ec.launcher.LauncherScrollDelegate;
+import com.northlight.latte.ec.launcher.LauncherDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherScrollDelegate();
+        return new LauncherDelegate();
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        Toast.makeText(Latte.getApplication(),"kkkkk",Toast.LENGTH_LONG).show();
-//    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        final ActionBar actionBar = getSupportActionBar();
+        if ((actionBar != null)){
+            actionBar.hide();
+        }
+    }
 }
