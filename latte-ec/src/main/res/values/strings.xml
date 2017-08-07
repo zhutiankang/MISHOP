@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LatteEC</string>
+    <string name="launcher_jump">跳过</string>
 </resources>
