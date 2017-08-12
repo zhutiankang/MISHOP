@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">LatteEC</string>
     <string name="launcher_jump">跳过</string>
+    <string name="tool_bar_sign_up">注册</string>
+    <string name="hint_name_sign_up">姓名</string>
+    <string name="hint_email_sign_up">邮箱</string>
+    <string name="hint_phone_sign_up">手机号码</string>
+    <string name="hint_password_sign_up">密码</string>
+    <string name="hint_repassword_sign_up">重复密码</string>
+    <string name="text_sign_up">注册</string>
+    <string name="text_link_sign_in">已经注册了？请登录</string>
 </resources>

@@ -6,13 +6,13 @@ import android.support.v7.app.ActionBar;
 
 import com.northlight.latte.activities.ProxyActivity;
 import com.northlight.latte.delegates.LatteDelegate;
-import com.northlight.latte.ec.launcher.LauncherDelegate;
+import com.northlight.latte.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 
     @Override
