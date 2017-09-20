@@ -46,6 +46,9 @@ public class RequestCallbacks implements Callback<String>{
                 ERROR.onError(response.code(),response.message());
             }
         }
+        if (REQUEST != null){
+            REQUEST.onRequestEnd();
+        }
         stopLoading();
     }
 

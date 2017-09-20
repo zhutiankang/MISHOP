@@ -5,13 +5,23 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Toast;
 
 import com.northlight.latte.delegates.LatteDelegate;
 import com.northlight.latte.ec.R;
 import com.northlight.latte.ec.R2;
+import com.northlight.latte.net.RestCreator;
+import com.northlight.latte.net.rx.RxRestClient;
+
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * author : 祝天康
@@ -46,9 +56,15 @@ public class SignUpDelegate extends LatteDelegate {
 
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
-       checkForm();
+        if (checkForm()){
+
+        }
     }
 
+    @OnClick(R2.id.tv_link_sign_in)
+    void onClickLink() {
+        start(new SignInDelegate());
+    }
     private boolean checkForm() {
         final String name = mName.getText().toString();
         final String email = mEmail.getText().toString();
@@ -91,5 +107,69 @@ public class SignUpDelegate extends LatteDelegate {
             mRePassword.setError(null);
         }
         return isPass;
+    }
+
+    //TODO:测试方法，没啥卵用X1
+    private void onCallRxGet(){
+        //原始方式一
+        final String url = "index.php";
+        final WeakHashMap<String,Object> params = new WeakHashMap<>();
+        final Observable<String> observable = RestCreator.getRxRestService().get(url,params);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
+    }
+
+    //TODO:测试方法，没啥卵用X2
+    private void onCallRxClient(){
+        final String url = "index.php";
+        RxRestClient.builder().url(url)
+                .build()
+                .get()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())//download io/new Thread线程
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

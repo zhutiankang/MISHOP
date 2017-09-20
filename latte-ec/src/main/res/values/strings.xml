@@ -9,4 +9,8 @@
     <string name="hint_repassword_sign_up">重复密码</string>
     <string name="text_sign_up">注册</string>
     <string name="text_link_sign_in">已经注册了？请登录</string>
+
+    <string name="tool_bar_sign_in">登录</string>
+    <string name="text_sign_in">登录</string>
+    <string name="text_link_sign_up">还没有账号？现在注册吧</string>
 </resources>

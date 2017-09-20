@@ -50,7 +50,8 @@ public class LatteLoader {
         dialog.show();
     }
 
-    //dialog传入当前的context，activity(fragment)传入当前activity的  少用application context 不然在webview上出错
+    //dialog传入当前的context，activity(fragment)传入当前activity的
+    // 少用application context 不然在webview上出错
     public static void showLoading(Context context){
         showLoading(context,DEFAULT_LOADER);
     }
