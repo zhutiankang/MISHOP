@@ -2,9 +2,11 @@ package com.northlight.festec.example;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.joanzapata.iconify.fonts.IoniconsModule;
 import com.northlight.latte.app.Latte;
+import com.northlight.latte.ec.database.DatabaseManager;
 import com.northlight.latte.ec.icon.FontEcModule;
 import com.northlight.latte.net.interceptors.DebugInterceptor;
 
@@ -27,5 +29,15 @@ public class ExampleApp extends Application {
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
+        DatabaseManager.getInstance().init(this);
+        initStetho();
+    }
+
+    private void initStetho() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build());
     }
 }

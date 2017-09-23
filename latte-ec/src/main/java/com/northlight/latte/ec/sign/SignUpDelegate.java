@@ -10,16 +10,19 @@ import android.widget.Toast;
 import com.northlight.latte.delegates.LatteDelegate;
 import com.northlight.latte.ec.R;
 import com.northlight.latte.ec.R2;
+import com.northlight.latte.net.RestClient;
 import com.northlight.latte.net.RestCreator;
+import com.northlight.latte.net.callback.ISuccess;
 import com.northlight.latte.net.rx.RxRestClient;
+import com.northlight.latte.util.log.LatteLogger;
 
 import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -57,6 +60,21 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
         if (checkForm()){
+            RestClient.builder()
+                    .url("http://192.168.1.108:8080/RestServer/api/user_profile.php")
+                    .params("name",mName.getText().toString())
+                    .params("email",mEmail.getText().toString())
+                    .params("phone",mPhone.getText().toString())
+                    .params("password",mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE",response);
+                            SignHandler.onSignUp(response);
+                        }
+                    })
+                    .build()
+                    .post();
 
         }
     }
