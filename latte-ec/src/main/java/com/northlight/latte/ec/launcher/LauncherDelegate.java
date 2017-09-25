@@ -1,13 +1,18 @@
 package com.northlight.latte.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.northlight.latte.app.AccoutManager;
+import com.northlight.latte.app.IUserChecker;
 import com.northlight.latte.delegates.LatteDelegate;
 import com.northlight.latte.ec.R;
 import com.northlight.latte.ec.R2;
+import com.northlight.latte.ui.launcher.ILauncherListener;
+import com.northlight.latte.ui.launcher.OnLauncherFinishTag;
 import com.northlight.latte.ui.launcher.ScrollLauncherTag;
 import com.northlight.latte.util.storage.LattePreference;
 import com.northlight.latte.util.timer.BaseTimerTask;
@@ -32,6 +37,15 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     private Timer mTimer = null;
     private int mCount = 5;
+    private ILauncherListener mLauncherListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener){
+            mLauncherListener = (ILauncherListener)activity;
+        }
+    }
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
@@ -61,9 +75,24 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
     //判断是否显示滑动启动页
     private void checkIsShowScroll(){
         if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
-            start(new LauncherScrollDelegate(),SINGLETASK);
+            startWithPop(new LauncherScrollDelegate());
         }else {
             //检查用户是否已经登录
+            AccoutManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mLauncherListener != null){
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mLauncherListener != null){
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 

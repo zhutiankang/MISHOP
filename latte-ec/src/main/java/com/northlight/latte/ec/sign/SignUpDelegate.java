@@ -1,5 +1,6 @@
 package com.northlight.latte.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -45,6 +46,15 @@ public class SignUpDelegate extends LatteDelegate {
     TextInputEditText mPassword = null;
     @BindView(R2.id.edit_sign_up_re_password)
     TextInputEditText mRePassword = null;
+    private ISignListener mSignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener){
+            mSignListener = (ISignListener)activity;
+        }
+    }
 
     @Override
     public Object setLayout() {
@@ -53,15 +63,16 @@ public class SignUpDelegate extends LatteDelegate {
 
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
-
+//        LatteLogger.d(this.toString());
     }
 
 
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
+//        "http://192.168.1.108:8080/RestServer/api/user_profile.php"
         if (checkForm()){
             RestClient.builder()
-                    .url("http://192.168.1.108:8080/RestServer/api/user_profile.php")
+                    .url("http://192.168.42.165:8080/RestServer/api/user_profile.php")
                     .params("name",mName.getText().toString())
                     .params("email",mEmail.getText().toString())
                     .params("phone",mPhone.getText().toString())
@@ -70,7 +81,7 @@ public class SignUpDelegate extends LatteDelegate {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE",response);
-                            SignHandler.onSignUp(response);
+                            SignHandler.onSignUp(response,mSignListener);
                         }
                     })
                     .build()
