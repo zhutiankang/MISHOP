@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * author : 祝天康
+ * author : zhutiankang
  * tips   :
  * date   : 2017/9/29 14:09
  */
