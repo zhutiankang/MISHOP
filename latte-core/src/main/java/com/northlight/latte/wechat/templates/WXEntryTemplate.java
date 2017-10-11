@@ -1,17 +1,24 @@
 package com.northlight.latte.wechat.templates;
 
-import com.northlight.latte.activities.ProxyActivity;
-import com.northlight.latte.delegates.LatteDelegate;
+import com.northlight.latte.wechat.BaseWXEntryActivity;
 
 /**
  * author : 祝天康
- * tips   :
+ * tips   : 设置成透明 登录完成之后finish掉
  * date   : 2017/9/29 15:40
  */
 
-public class WXEntryTemplate extends ProxyActivity {
+public class WXEntryTemplate extends BaseWXEntryActivity {
+
     @Override
-    public LatteDelegate setRootDelegate() {
-        return null;
+    protected void onResume() {
+        super.onResume();
+        finish();
+        overridePendingTransition(0,0);//不需要有任何动画效果
+    }
+
+    @Override
+    protected void onSignInSuccess(String userInfo) {
+
     }
 }

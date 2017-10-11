@@ -1,5 +1,7 @@
 package com.northlight.latte.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -87,6 +89,18 @@ public class Configurator {
     }
     public final Configurator withLoaderDelayed(long delayed){
         LATTE_CONFIGS.put(ConfigType.LOADER_DELAYED,delayed);
+        return this;
+    }
+    public final Configurator withWeChatAppId(String appId){
+        LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_ID,appId);
+        return this;
+    }
+    public final Configurator withWeChatAppSecret(String appSecret){
+        LATTE_CONFIGS.put(ConfigType.WE_CHAT_APP_SECRET,appSecret);
+        return this;
+    }
+    public final Configurator withActivity(Activity activity){
+        LATTE_CONFIGS.put(ConfigType.ACTIVITY,activity);
         return this;
     }
 }
