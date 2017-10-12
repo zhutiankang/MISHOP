@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.northlight.latte.app.ConfigType;
 import com.northlight.latte.app.Latte;
+import com.northlight.latte.wechat.callbacks.IWeChatSignInCallback;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -20,6 +21,8 @@ public class LatteWeChat {
 
     private final IWXAPI WXAPI; //wx回调接口
 
+    private IWeChatSignInCallback mSignInCallback;
+
     private static final class Holder{
         private static final LatteWeChat INSTANCE = new LatteWeChat();
     }
@@ -35,6 +38,15 @@ public class LatteWeChat {
 
     public final IWXAPI getWXAPI(){
         return WXAPI;
+    }
+
+    public LatteWeChat onSignSuccess(IWeChatSignInCallback callback){
+        this.mSignInCallback = callback;
+        return this;
+    }
+
+    public IWeChatSignInCallback getSignInCallback() {
+        return mSignInCallback;
     }
 
     public final void signIn(){

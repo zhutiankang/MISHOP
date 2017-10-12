@@ -1,6 +1,7 @@
 package com.northlight.latte.wechat.templates;
 
 import com.northlight.latte.wechat.BaseWXEntryActivity;
+import com.northlight.latte.wechat.LatteWeChat;
 
 /**
  * author : 祝天康
@@ -19,6 +20,6 @@ public class WXEntryTemplate extends BaseWXEntryActivity {
 
     @Override
     protected void onSignInSuccess(String userInfo) {
-
+        LatteWeChat.getInstance().getSignInCallback().onSignInSuccess(userInfo);
     }
 }

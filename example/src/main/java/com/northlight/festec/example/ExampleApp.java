@@ -28,6 +28,8 @@ public class ExampleApp extends Application {
                 .withLoaderDelayed(1000)
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
+                .withWeChatAppId("")
+                .withWeChatAppSecret("")
                 .configure();
         DatabaseManager.getInstance().init(this);
         initStetho();
