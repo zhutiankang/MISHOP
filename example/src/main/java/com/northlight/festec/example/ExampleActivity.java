@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.northlight.latte.activities.ProxyActivity;
 import com.northlight.latte.app.Latte;
 import com.northlight.latte.delegates.LatteDelegate;
-import com.northlight.latte.ec.launcher.LauncherDelegate;
+import com.northlight.latte.ec.main.EcBottomDelegate;
 import com.northlight.latte.ec.sign.ISignListener;
 import com.northlight.latte.ec.sign.SignInDelegate;
 import com.northlight.latte.ui.launcher.ILauncherListener;
@@ -20,7 +20,7 @@ public class ExampleActivity extends ProxyActivity implements
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new EcBottomDelegate();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ExampleActivity extends ProxyActivity implements
         switch (tag){
             case SIGNED:
                 Toast.makeText(this,"启动结束，用户已登录",Toast.LENGTH_SHORT).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this,"启动结束，用户没登录",Toast.LENGTH_SHORT).show();
