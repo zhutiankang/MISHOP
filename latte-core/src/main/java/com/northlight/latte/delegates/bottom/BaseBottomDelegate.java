@@ -2,6 +2,7 @@ package com.northlight.latte.delegates.bottom;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -38,6 +39,8 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
 
     public abstract LinkedHashMap<BottomTabBean,BottomItemDelegate> setItems(ItemBuilder builder);
     public abstract int setIndexDelegate();
+
+    @ColorInt
     public abstract int setClickedColor();
     @BindView(R2.id.bottom_bar)
     LinearLayoutCompat mBottomBar = null;

@@ -26,6 +26,6 @@ public abstract class BottomItemDelegate extends LatteDelegate{
             TOUCH_TIME = System.currentTimeMillis();
             Toast.makeText(_mActivity, "双击退出" + Latte.getApplicationContext().getString(R.string.app_name), Toast.LENGTH_SHORT).show();
         }
-        return true;
+        return true;//自己消化掉了，不需要向下传递
     }
 }
