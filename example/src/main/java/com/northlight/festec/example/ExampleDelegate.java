@@ -27,10 +27,11 @@ public class ExampleDelegate extends LatteDelegate{
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
         testRestClient();
     }
-//    http://news.baidu.com/
+//    http://news.baidu.com/    http://127.0.0.1/index【Debug拦截器】   base_url与url以 http://为分界线，如果url中有http://就用url不组合base_url   否则组合
     private void testRestClient(){
+        //1. 有http://, 完整url,不需要与base_url组合
         RestClient.builder()
-                .url("http://127.0.0.1/index")
+                .url("http://192.168.43.170:8080/RestServer/api/user_profile.php")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
@@ -53,5 +54,17 @@ public class ExampleDelegate extends LatteDelegate{
                 })
                 .build()
                 .get();
+        //2. 部分url,需要与base_url组合
+//        RestClient.builder()
+//                .url("user_profile.php")
+//                .loader(getContext())
+//                .success(new ISuccess() {
+//                    @Override
+//                    public void onSuccess(String response) {
+//                        Toast.makeText(Latte.getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .build()
+//                .get();
     }
 }
