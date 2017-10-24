@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 
 /**
  * author : 祝天康
- * tips   : 构造器，创造者，LinkedHashMap有序[key value]不然bar会乱掉
+ * tips   : 构造器，创造者，LinkedHashMap有序[key value]不然bottombar会乱掉
  * date   : 2017/10/13 14:39
  */
 
