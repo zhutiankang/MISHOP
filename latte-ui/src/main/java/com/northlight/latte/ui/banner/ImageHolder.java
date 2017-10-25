@@ -17,6 +17,10 @@ import com.bumptech.glide.request.RequestOptions;
 
 public class ImageHolder implements Holder<String> {
     private AppCompatImageView mImageView = null;
+    private static final RequestOptions BANNER_OPTIONS = new RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .dontAnimate()
+            .centerCrop();
     @Override
     public View createView(Context context) {
         mImageView = new AppCompatImageView(context);
@@ -25,14 +29,9 @@ public class ImageHolder implements Holder<String> {
 
     @Override
     public void UpdateUI(Context context, int position, String data) {
-        final RequestOptions options = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .centerCrop();
-
         Glide.with(context)
                 .load(data)
-                .apply(options)
+                .apply(BANNER_OPTIONS)
                 .into(mImageView);
     }
 }

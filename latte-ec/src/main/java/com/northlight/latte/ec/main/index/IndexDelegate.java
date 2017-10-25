@@ -4,22 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.northlight.latte.delegates.bottom.BottomItemDelegate;
 import com.northlight.latte.ec.R;
 import com.northlight.latte.ec.R2;
-import com.northlight.latte.net.RestClient;
-import com.northlight.latte.net.callback.ISuccess;
-import com.northlight.latte.ui.recycler.MultipleFields;
-import com.northlight.latte.ui.recycler.MultipleItemEntity;
 import com.northlight.latte.ui.refresh.RefreshHandler;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -51,34 +45,21 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBinderView(@Nullable Bundle savedInstanceState, View rootView) {
-        mRefreshHandler = new RefreshHandler(mRefreshLayout);
-        RestClient.builder()
-                .url("index.php")
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        final IndexDataConverter dataConverter = new IndexDataConverter();
-                        dataConverter.setJsonData(response);
-                        final ArrayList<MultipleItemEntity> entities = dataConverter.convert();
-                        final String text = entities.get(2).getField(MultipleFields.TEXT);
-                        Toast.makeText(getActivity(),text,Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-                .get();
+        mRefreshHandler =
+                RefreshHandler.create(mRefreshLayout,mRecyclerView,new IndexDataConverter());
     }
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
-//        mRefreshHandler.firstPage("index.php");
-//        initRecyclerView();
+        initRecyclerView();
+        mRefreshHandler.firstPage("index.php");
     }
 
     private void initRecyclerView() {
-//        final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
-//        mRecyclerView.setLayoutManager(manager);
+        final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
+        mRecyclerView.setLayoutManager(manager);
 //        mRecyclerView.addItemDecoration();
     }
 

@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.northlight.latte.activities.ProxyActivity;
 import com.northlight.latte.app.Latte;
 import com.northlight.latte.delegates.LatteDelegate;
+import com.northlight.latte.ec.launcher.LauncherDelegate;
 import com.northlight.latte.ec.main.EcBottomDelegate;
 import com.northlight.latte.ec.sign.ISignListener;
 import com.northlight.latte.ec.sign.SignInDelegate;
@@ -20,7 +21,7 @@ public class ExampleActivity extends ProxyActivity implements
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new EcBottomDelegate();
+        return new LauncherDelegate();
     }
 
     @Override
@@ -36,6 +37,7 @@ public class ExampleActivity extends ProxyActivity implements
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this,"登录成功",Toast.LENGTH_SHORT).show();
+        startWithPop(new EcBottomDelegate());
     }
 
     @Override

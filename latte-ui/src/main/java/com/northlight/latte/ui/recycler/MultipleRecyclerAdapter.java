@@ -29,6 +29,11 @@ public class MultipleRecyclerAdapter
 
     //确保初始化一次Banner，防止重复Item加载
     private boolean mIsInitBanner = false;
+    //设置图片加载策略
+    private static final RequestOptions RECYCLER_OPTIONS = new RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .dontAnimate()
+            .centerCrop();
     protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
         init();
@@ -42,7 +47,7 @@ public class MultipleRecyclerAdapter
     }
     private void init(){
         //设置不同的item布局
-        addItemType(ItemType.TEXT,R.layout.item_multiple_text);
+        addItemType(ItemType.TEXT,R.layout.item_multiple_text);  //创建不同的holder
         addItemType(ItemType.IMAGE,R.layout.item_multiple_image);
         addItemType(ItemType.TEXT_IMAGE,R.layout.item_multiple_image_text);
         addItemType(ItemType.BANNER,R.layout.item_multiple_banner);
@@ -63,11 +68,7 @@ public class MultipleRecyclerAdapter
         final String text;
         final String imagUrl;
         final ArrayList<String> bannerImage;
-        final RequestOptions options = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
-                .centerCrop();
-        switch (holder.getItemViewType()){
+        switch (holder.getItemViewType()){   //==entity.getItemType()方法  MultipleItemEntity extends MultiItemEntity override
             case ItemType.TEXT:
                 text = entity.getField(MultipleFields.TEXT);
                 holder.setText(R.id.text_single,text);
@@ -76,7 +77,7 @@ public class MultipleRecyclerAdapter
                 imagUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imagUrl)
-                        .apply(options)
+                        .apply(RECYCLER_OPTIONS)
                         .into((ImageView) holder.getView(R.id.image_single));
                 break;
             case ItemType.TEXT_IMAGE:
@@ -85,7 +86,7 @@ public class MultipleRecyclerAdapter
                 imagUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imagUrl)
-                        .apply(options)
+                        .apply(RECYCLER_OPTIONS)
                         .into((ImageView) holder.getView(R.id.img_multiple));
                 break;
             case ItemType.BANNER:
@@ -95,8 +96,6 @@ public class MultipleRecyclerAdapter
                     BannerCreator.setDefault(convenientBanner, bannerImage, this);
                     mIsInitBanner = true;
                 }
-
-
                 break;
             default:
                 break;
