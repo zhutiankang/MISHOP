@@ -8,5 +8,5 @@
                                              android:gravity="center"
                                              android:textColor="@android:color/black"
                                              android:textSize="18sp"
-                                             tools:text="kkk"
+                                             tools:text="only text"
                                              android:textStyle="bold"/>
