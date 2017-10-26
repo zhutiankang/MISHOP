@@ -14,6 +14,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.northlight.latte.delegates.bottom.BottomItemDelegate;
 import com.northlight.latte.ec.R;
 import com.northlight.latte.ec.R2;
+import com.northlight.latte.ec.main.EcBottomDelegate;
 import com.northlight.latte.ui.recycler.BaseDecoration;
 import com.northlight.latte.ui.refresh.RefreshHandler;
 
@@ -63,6 +64,8 @@ public class IndexDelegate extends BottomItemDelegate {
         final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     private void initRefreshLayout() {
