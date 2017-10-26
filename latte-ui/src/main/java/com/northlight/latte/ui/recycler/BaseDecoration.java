@@ -1,7 +1,8 @@
 package com.northlight.latte.ui.recycler;
 
-import android.content.Context;
-import android.support.v7.widget.DividerItemDecoration;
+import android.support.annotation.ColorInt;
+
+import com.choices.divider.DividerItemDecoration;
 
 /**
  * author : 祝天康
@@ -11,8 +12,11 @@ import android.support.v7.widget.DividerItemDecoration;
 
 public class BaseDecoration extends DividerItemDecoration {
 
+    private BaseDecoration(int color, int size) {
+        setDividerLookup(new DividerLookupImp(color,size));
+    }
 
-    public BaseDecoration(Context context, int orientation) {
-        super(context, orientation);
+    public static BaseDecoration create(@ColorInt int color, int size){
+        return new BaseDecoration(color,size);
     }
 }
