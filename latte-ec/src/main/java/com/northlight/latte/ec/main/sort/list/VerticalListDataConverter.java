@@ -33,7 +33,7 @@ public class VerticalListDataConverter extends DataConverter {
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE, ItemType.VERTICAL_MENU_LIST)
                     .setField(MultipleFields.ID, id)
-                    .setField(MultipleFields.NAME, name)
+                    .setField(MultipleFields.TEXT, name)
                     .setField(MultipleFields.TAG, false)
                     .build();
 
