@@ -24,63 +24,67 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     //Android Support包
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:support-v4:26.0.0-alpha1'
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile project(':latte-annotations')
+    implementation 'com.android.support:design:26.0.0-alpha1'
+    implementation 'com.android.support:support-v4:26.0.0-alpha1'
+    implementation 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation project(':latte-annotations')
     //字体图标
-    compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
-    compile 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
+    implementation 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+    implementation 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
     //Fragment依赖
-    compile 'me.yokeyword:fragmentation:1.0.8'
-    compile 'me.yokeyword:fragmentation-swipeback:1.0.8'
+    implementation 'me.yokeyword:fragmentation:1.0.8'
+    implementation 'me.yokeyword:fragmentation-swipeback:1.0.8'
     //ButterKnife依赖
-    compile 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //网络请求依赖
-    compile 'com.squareup.okio:okio:1.13.0'
-    compile 'com.squareup.okhttp3:okhttp:3.8.1'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'com.squareup.okio:okio:1.13.0'
+//    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
     //loader依赖
-    compile 'com.wang.avi:library:2.1.3'
+    implementation 'com.wang.avi:library:2.1.3'
     //Banner依赖
-    compile 'com.bigkoo:convenientbanner:2.0.5'
-    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    implementation 'com.bigkoo:convenientbanner:2.0.5'
+    implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     //JSON依赖比Gson更快解析速度,应用性
-    compile 'com.alibaba:fastjson:1.1.64.android'
+    implementation 'com.alibaba:fastjson:1.1.64.android'
     //RxJava
-    compile 'io.reactivex.rxjava2:rxjava:2.1.3'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     //DB依赖
-    compile 'org.greenrobot:greendao-generator:3.2.2'
-    compile 'org.greenrobot:greendao:3.2.2'
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+    implementation 'org.greenrobot:greendao:3.2.2'
     //Log
-    compile 'com.orhanobut:logger:2.1.1'
+    implementation 'com.orhanobut:logger:2.1.1'
     //微信依赖（包含统计）
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
     //RecyclerView依赖
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     //RecyclerView 分割线
-    compile 'com.choices.divider:RecyclerView_Divider:1.0.0'
+    implementation 'com.choices.divider:RecyclerView_Divider:1.0.0'
     //图片处理
-    compile 'com.github.bumptech.glide:glide:4.2.0'
-    compile 'com.github.bumptech.glide:okhttp3-integration:4.2.0'
+    implementation 'com.github.bumptech.glide:glide:4.2.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
     //沉浸式状态栏
-    compile ('com.github.niorgai:StatusBarCompat:2.1.4', {
+    implementation ('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
     //Google AutoValue
-    provided 'com.google.auto.value:auto-value:1.4.1'
+//    implementation 'com.google.auto.value:auto-value:1.4.1'
     annotationProcessor "com.google.auto.value:auto-value:1.4.1"
 
 }
